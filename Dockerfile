@@ -5,13 +5,12 @@ WORKDIR /app
 
 RUN apt update && apt upgrade
 
-RUN apt install -y gcc g++ make gawk perl wget libssl-dev git
+RUN apt install -y gcc g++ make gawk perl wget libssl-dev openssl git
 
 # Download sources:
 RUN cd /app && wget \
     https://ftp.pcre.org/pub/pcre/pcre-8.44.tar.gz \
     http://zlib.net/zlib-1.2.11.tar.gz \
-    http://www.openssl.org/source/openssl-1.1.1g.tar.gz \
     https://nginx.org/download/nginx-1.18.0.tar.gz
 
 # Untar sources
@@ -23,9 +22,6 @@ RUN cd /app/pcre-8.44 && ./configure && make && make install
 
 # zlib – Supports header compression. Required by the NGINX Gzip module.
 RUN cd /app/zlib-1.2.11 && ./configure && make && make install
-
-# OpenSSL – Supports the HTTPS protocol. Required by the NGINX SSL module and others.
-RUN cd /app/openssl-1.1.1g && ./Configure linux-x86_64 --prefix=/usr && make && make install
 
 # Patch NGINX to support ssl forwarding
 RUN cd /app/nginx-1.* && \
