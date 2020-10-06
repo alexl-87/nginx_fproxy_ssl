@@ -3,9 +3,9 @@ MAINTAINER  Alexander Latyshev <latyshevmb@gmail.com>
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get update && apt-get upgrade && apt-get install -y apt-utils
 
-RUN apt-get install -y --no-install-recommends gcc g++ make gawk perl wget libssl-dev openssl git vim 
+RUN apt-get install -y gcc g++ make gawk perl wget libssl-dev openssl git vim 
 
 # Download sources:
 RUN cd /app && wget \
