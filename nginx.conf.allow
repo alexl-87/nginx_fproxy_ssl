@@ -1,4 +1,3 @@
-
 #user  nobody;
 worker_processes  1;
 #error_log  logs/error.log;
@@ -28,7 +27,7 @@ http {
          listen  443;
         
          # dns resolver used by forward proxying
-         resolver  114.114.114.114;
+         resolver  8.8.8.8;
 
          # forward proxy for CONNECT request
          proxy_connect;
@@ -44,5 +43,4 @@ http {
          }
     }
     #gzip  on;
-    
 }
