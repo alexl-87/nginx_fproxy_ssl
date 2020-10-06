@@ -46,7 +46,9 @@ make && make install
 
 # Add scripts for controlling NGINX configurations
 ADD nginx_allow.sh /usr/local/nginx/sbin/
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_deny.sh
 ADD nginx_deny.sh  /usr/local/nginx/sbin/
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_allow.sh
 
 # Add ssl forwarding configuration
 ADD nginx.conf.allow /usr/local/nginx/conf/
