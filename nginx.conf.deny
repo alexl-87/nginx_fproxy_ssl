@@ -43,13 +43,7 @@ http {
         #access_log  logs/host.access.log  main;
 
         location / {
-           if (-f $document_root/ret503.html){
-                return 503;
-           }
-           root   /usr/local/nginx/html;
-          # proxy_pass https://www.youtube.com;
-          # root /usr/local/nginx/html;
-           # index  index.html index.htm;
+            return 503;
         }
 
         #error_page  404              /404.html;

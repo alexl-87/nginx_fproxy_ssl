@@ -41,9 +41,6 @@ RUN cd /app/nginx-1.* && \
 --add-module=./ngx_http_proxy_connect_module && \
 make && make install
 
-# Create SSL certificate files
-# RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
-
 # Add scripts for controlling NGINX configurations
 COPY nginx_allow.sh /usr/local/nginx/sbin/
 COPY nginx_deny.sh  /usr/local/nginx/sbin/
@@ -56,3 +53,6 @@ COPY nginx.conf.deny /usr/local/nginx/conf/
 
 RUN chmod 0700 /usr/local/nginx/sbin/nginx_deny.sh
 RUN chmod 0700 /usr/local/nginx/sbin/nginx_allow.sh
+
+# Create SSL certificate files
+# RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
