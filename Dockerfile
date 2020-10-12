@@ -3,9 +3,9 @@ MAINTAINER  Alexander Latyshev <latyshevmb@gmail.com>
 
 WORKDIR /usr/local/nginx
 
-RUN yum update && mkdir /app
+RUN yum update -y && mkdir /app
 
-RUN yum install -y gcc gcc-c++ make gawk perl wget openssl-devel openssl git vim patch
+RUN yum install gcc gcc-c++ make gawk perl wget openssl-devel openssl git vim patch -y
 
 # Download sources:
 RUN cd /app && wget \
