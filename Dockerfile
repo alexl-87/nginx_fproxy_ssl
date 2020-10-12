@@ -1,11 +1,11 @@
-FROM        centos:latest
+FROM        ubuntu:18.04
 MAINTAINER  Alexander Latyshev <latyshevmb@gmail.com>
 
-WORKDIR /usr/local/nginx
+WORKDIR /app
 
-RUN yum update -y && mkdir /app
+RUN apt-get update && apt-get upgrade
 
-RUN yum install gcc gcc-c++ make gawk perl wget openssl-devel openssl git vim patch -y
+RUN apt-get install -y gcc g++ make gawk perl wget libssl-dev openssl git vim 
 
 # Download sources:
 RUN cd /app && wget \
