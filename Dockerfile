@@ -51,8 +51,10 @@ COPY nginx.conf.allow /usr/local/nginx/conf/
 # Add force return 503 configuration
 COPY nginx.conf.deny /usr/local/nginx/conf/
 
+COPY openssl.cnf /etc/ssl/openssl.cnf
+
 RUN chmod 0700 /usr/local/nginx/sbin/nginx_deny.sh
 RUN chmod 0700 /usr/local/nginx/sbin/nginx_allow.sh
 
 # Create SSL certificate files
-# RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
