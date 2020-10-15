@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get upgrade
 
-RUN apt-get install -y gcc g++ make gawk perl wget libssl-dev openssl git vim 
+RUN apt-get install -y gcc g++ make gawk perl curl wget libssl-dev openssl git vim 
 
 # Download sources:
 RUN cd /app && wget \
@@ -51,6 +51,8 @@ COPY nginx.conf.allow /usr/local/nginx/conf/
 # Add force return 503 configuration
 COPY nginx.conf.deny /usr/local/nginx/conf/
 
+# Necessary for the successful creation of SSL certificate files.
+# "RANDFILE = $ENV::HOME/.rnd" commented out
 COPY openssl.cnf /etc/ssl/openssl.cnf
 
 RUN chmod 0700 /usr/local/nginx/sbin/nginx_deny.sh
