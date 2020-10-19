@@ -42,14 +42,14 @@ RUN cd /app/nginx-1.* && \
 make && make install
 
 # Add scripts for controlling NGINX configurations
-COPY nginx_allow.sh /usr/local/nginx/sbin/
-COPY nginx_deny.sh  /usr/local/nginx/sbin/
+COPY nginx_200.sh /usr/local/nginx/sbin/
+COPY nginx_503.sh  /usr/local/nginx/sbin/
 
 # Add ssl forwarding configuration
-COPY nginx.conf.allow /usr/local/nginx/conf/
+COPY nginx.conf.200 /usr/local/nginx/conf/
 
 # Add force return 503 configuration
-COPY nginx.conf.deny /usr/local/nginx/conf/
+COPY nginx.conf.503 /usr/local/nginx/conf/
 
 # Necessary for the successful creation of SSL certificate files.
 # "RANDFILE = $ENV::HOME/.rnd" commented out
