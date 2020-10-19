@@ -55,8 +55,8 @@ COPY nginx.conf.503 /usr/local/nginx/conf/
 # "RANDFILE = $ENV::HOME/.rnd" commented out
 COPY openssl.cnf /etc/ssl/openssl.cnf
 
-RUN chmod 0700 /usr/local/nginx/sbin/nginx_deny.sh
-RUN chmod 0700 /usr/local/nginx/sbin/nginx_allow.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_503.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_200.sh
 
 # Create SSL certificate files
 RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
