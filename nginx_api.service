@@ -1,15 +1,13 @@
+# copy this file to /lib/systemd/system/
+
 [Unit]
 Description=NGINX API
+After=network-online.target
 
 [Service]
-ExecStart=/home/harmonic/api/nginx_api.js
-Restart=always
-User=nobody
-# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
-Group=nobody
-Environment=PATH=/usr/bin:/usr/local/bin
-Environment=NODE_ENV=production
-WorkingDirectory=/home/harmonic/api
+Restart=on-failure
+WorkingDirectory=/home/harmonic/api/
+ExecStart=/usr/bin/node /home/harmonic/api/nginx_api.js
 
 [Install]
 WantedBy=multi-user.target
