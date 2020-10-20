@@ -3,21 +3,25 @@ var app = express();
 var exec = require("child_process").exec;
 app.get('/api/docker/run/:port', function (req, res) {
     var command = "docker run -t -d -p " + req.params.port + ":443 --name NGINX-" + req.params.port + " --hostname NGINX-" + req.params.port + " nginx_forward_proxy";
+    console.log("Run command: " + command);
     runCommand(command);
     res.send("SUCCESS");
 });
 app.get('/api/docker/listen/:port', function (req, res) {
     var command = "docker exec -itd NGINX-" + req.params.port + " /usr/local/nginx/sbin/nginx";
+    console.log("Run command: " + command);
     runCommand(command);
     res.send("SUCCESS");
 });
 app.get('/api/docker/rm/:port', function (req, res) {
     var command = "docker rm -f NGINX-" + req.params.port;
+    console.log("Run command: " + command);
     runCommand(command);
     res.send("SUCCESS");
 });
 app.get('/api/docker/response/:port/:response', function (req, res) {
-    var command = "docker exec -itd NGINX-" + req.params.port + " /usr/local/nginx/sbin/nginx_ " + req.params.response + ".sh";
+    var command = "docker exec -itd NGINX-" + req.params.port + " /usr/local/nginx/sbin/nginx_" + req.params.response + ".sh";
+    console.log("Run command: " + command);
     runCommand(command);
     res.send("SUCCESS");
 });
@@ -29,7 +33,7 @@ function runCommand(cmd, callback) {
                     reject(error);
                 }
                 if (stderr) {
-                    console.log("" + stderr);
+                    console.error("" + stderr);
                 }
                 resolve(stdout);
             });
