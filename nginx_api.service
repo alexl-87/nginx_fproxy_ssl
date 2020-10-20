@@ -6,8 +6,8 @@ After=network-online.target
 
 [Service]
 Restart=on-failure
-WorkingDirectory=/home/harmonic/api/
-ExecStart=/usr/bin/node /home/harmonic/api/nginx_api.js
+WorkingDirectory=/home/harmonic/nodejs/
+ExecStart=/usr/bin/node /home/harmonic/nodejs/nginx_api.js
 
 [Install]
 WantedBy=multi-user.target
