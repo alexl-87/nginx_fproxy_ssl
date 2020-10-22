@@ -43,20 +43,46 @@ make && make install
 
 # Add scripts for controlling NGINX configurations
 COPY nginx_200.sh /usr/local/nginx/sbin/
-COPY nginx_503.sh  /usr/local/nginx/sbin/
+COPY nginx_400.sh  /usr/local/nginx/sbin/
+COPY nginx_401.sh /usr/local/nginx/sbin/
+COPY nginx_403.sh  /usr/local/nginx/sbin/
+COPY nginx_404.sh /usr/local/nginx/sbin/
+COPY nginx_500.sh  /usr/local/nginx/sbin/
+COPY nginx_501.sh /usr/local/nginx/sbin/
+COPY nginx_502.sh  /usr/local/nginx/sbin/
+COPY nginx_503.sh /usr/local/nginx/sbin/
+COPY nginx_504.sh  /usr/local/nginx/sbin/
 
 # Add ssl forwarding configuration
 COPY nginx.conf.200 /usr/local/nginx/conf/
-
-# Add force return 503 configuration
+COPY nginx.conf.400 /usr/local/nginx/conf/
+COPY nginx.conf.401 /usr/local/nginx/conf/
+COPY nginx.conf.402 /usr/local/nginx/conf/
+COPY nginx.conf.403 /usr/local/nginx/conf/
+COPY nginx.conf.404 /usr/local/nginx/conf/
+COPY nginx.conf.500 /usr/local/nginx/conf/
+COPY nginx.conf.501 /usr/local/nginx/conf/
+COPY nginx.conf.502 /usr/local/nginx/conf/
 COPY nginx.conf.503 /usr/local/nginx/conf/
+COPY nginx.conf.504 /usr/local/nginx/conf/
 
 # Necessary for the successful creation of SSL certificate files.
 # "RANDFILE = $ENV::HOME/.rnd" commented out
 COPY openssl.cnf /etc/ssl/openssl.cnf
 
-RUN chmod 0700 /usr/local/nginx/sbin/nginx_503.sh
 RUN chmod 0700 /usr/local/nginx/sbin/nginx_200.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_400.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_401.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_402.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_403.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_404.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_500.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_501.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_502.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_503.sh
+RUN chmod 0700 /usr/local/nginx/sbin/nginx_504.sh
+
+RUN cp /usr/local/nginx/html/50x.html /usr/local/nginx/html/40x.html
 
 # Create SSL certificate files
 RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
