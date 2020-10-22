@@ -45,6 +45,7 @@ make && make install
 COPY nginx_200.sh /usr/local/nginx/sbin/
 COPY nginx_400.sh  /usr/local/nginx/sbin/
 COPY nginx_401.sh /usr/local/nginx/sbin/
+COPY nginx_402.sh /usr/local/nginx/sbin/
 COPY nginx_403.sh  /usr/local/nginx/sbin/
 COPY nginx_404.sh /usr/local/nginx/sbin/
 COPY nginx_500.sh  /usr/local/nginx/sbin/
