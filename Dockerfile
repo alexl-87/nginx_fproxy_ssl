@@ -3,7 +3,7 @@ MAINTAINER  Alexander Latyshev <latyshevmb@gmail.com>
 
 WORKDIR /app
 
-RUN apt-get update
+RUN apt-get update -y && apt-get upgrade -y
 
 RUN apt-get install -y gcc g++ make gawk perl curl wget libssl-dev openssl git vim 
 
