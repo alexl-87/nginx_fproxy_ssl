@@ -33,26 +33,21 @@ http {
     #gzip  on;
 
     server {
-        listen       443 ssl;
-        server_name  localhost;
+         listen  443 ssl;
+         ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+         ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 
-        ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
-        ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
-        #charset koi8-r;
 
-        #access_log  logs/host.access.log  main;
+         # forward proxy for CONNECT request
+         proxy_connect;
+         # proxy_connect_allow            443;
 
-        location / {
-            return 200;
-        }
-
-        #error_page  404              /404.html;
-
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
+         # forward proxy for non-CONNECT request
+         location / {
+             #dns resolver used by forward proxying
+             proxy_pass https://origin-origin-alex-az-local-01.nebula.video/;
+             proxy_set_header Host $host;
+         }
     }
+
 }
