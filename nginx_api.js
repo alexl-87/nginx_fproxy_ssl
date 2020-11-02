@@ -13,6 +13,12 @@ app.get('/api/docker/listen/:port', function (req, res) {
     runCommand(command);
     res.send("SUCCESS");
 });
+app.get('/api/docker/cp/:port/:file/:directory', function (req, res) {
+    var command = "docker cp /home/nginx/nginx/" + req.params.file + " NGINX-" + req.params.port + ":/usr/local/nginx/" + req.params.directory;
+    console.log("Run command: " + command);
+    runCommand(command);
+    res.send("SUCCESS");
+});
 app.get('/api/docker/rm/:port', function (req, res) {
     var command = "docker rm -f NGINX-" + req.params.port;
     console.log("Run command: " + command);

@@ -55,7 +55,6 @@ COPY nginx_503.sh /usr/local/nginx/sbin/
 COPY nginx_504.sh  /usr/local/nginx/sbin/
 
 # Add ssl forwarding configuration
-COPY nginx.conf.200 /usr/local/nginx/conf/
 COPY nginx.conf.400 /usr/local/nginx/conf/
 COPY nginx.conf.401 /usr/local/nginx/conf/
 COPY nginx.conf.402 /usr/local/nginx/conf/
