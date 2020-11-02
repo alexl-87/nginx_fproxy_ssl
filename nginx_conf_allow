@@ -45,7 +45,7 @@ http {
          # forward proxy for non-CONNECT request
          location / {
              #dns resolver used by forward proxying
-             proxy_pass https://origin-origin-URL_PREFIX-01.nebula.video/;
+             proxy_pass https://origin-origin-REPLACE_PREFIX-01.nebula.video/;
              proxy_set_header Host $host;
          }
     }
