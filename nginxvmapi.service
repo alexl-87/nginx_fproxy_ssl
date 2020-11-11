@@ -7,7 +7,7 @@ After=network-online.target
 [Service]
 Restart=on-failure
 WorkingDirectory=/home/nginx/nodejs/
-ExecStart=/usr/bin/node /home/nginx/nodejs/nginx_api.js
+ExecStart=/usr/bin/node /home/nginx/nodejs/nginxvmapi.js
 
 [Install]
 WantedBy=multi-user.target
